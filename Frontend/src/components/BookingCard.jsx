@@ -134,7 +134,7 @@ const BookingCard = ({ flight, user, onBookingSuccess, onClose }) => {
               }}>
                 <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Total Billing Amount</span>
                 <span className="mono" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-rust)', display: 'flex', alignItems: 'center' }}>
-                  <DollarSign size={20} /> {flight.price * noOfSeats}
+                  <span style={{ marginRight: '4px' }}>₹</span>{flight.price * noOfSeats}
                 </span>
               </div>
 
@@ -169,7 +169,7 @@ const BookingCard = ({ flight, user, onBookingSuccess, onClose }) => {
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                 <span style={{ color: 'var(--text-secondary)' }}>Total Cost</span>
-                <span className="mono" style={{ fontWeight: 700, color: 'var(--accent-rust)' }}>${bookingResult.totalCost}</span>
+                <span className="mono" style={{ fontWeight: 700, color: 'var(--accent-rust)' }}>₹{bookingResult.totalCost}</span>
               </div>
             </div>
 

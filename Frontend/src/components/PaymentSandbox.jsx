@@ -79,7 +79,7 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>AMOUNT DUE</div>
                 <div className="mono" style={{ fontWeight: 800, fontSize: '1.4rem', color: 'var(--accent-rust)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                  <DollarSign size={18} /> {booking.totalCost}
+                  <span style={{ marginRight: '4px' }}>₹</span>{booking.totalCost}
                 </div>
               </div>
             </div>
@@ -158,7 +158,7 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
               </div>
 
               <button type="submit" disabled={loading} className="btn btn-primary" style={{ width: '100%', height: '48px', marginTop: '12px' }}>
-                {loading ? <RefreshCw className="animate-spin" size={18} /> : `Pay $${booking.totalCost}`}
+                {loading ? <RefreshCw className="animate-spin" size={18} /> : `Pay ₹${booking.totalCost}`}
               </button>
             </form>
           </>

@@ -404,7 +404,7 @@ const AdminCMS = ({ user }) => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
                   <div className="input-group">
-                    <label>Price ($)</label>
+                    <label>Price (₹)</label>
                     <input 
                       type="number" 
                       required 
@@ -538,7 +538,7 @@ const AdminCMS = ({ user }) => {
                         </div>
                         <div style={{ textAlign: 'right' }}>
                           <div className="mono" style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-rust)' }}>
-                            ${flight.price}
+                            ₹{flight.price}
                           </div>
                           <div className="mono" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
                             SEATS: {flight.totalSeats}

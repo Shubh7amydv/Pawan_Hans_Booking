@@ -92,28 +92,6 @@ function App() {
             }}>
               Test Auth RBAC, safe transactional booking seat updates, and RabbitMQ message enqueuing through a single, cohesive frontend dashboard.
             </p>
-
-            {/* Diagnostics indicators */}
-            <div className="mono" style={{
-              display: 'inline-flex',
-              flexDirection: 'column',
-              gap: '6px',
-              fontSize: '0.8rem',
-              color: 'var(--text-muted)',
-              background: 'var(--bg-secondary)',
-              border: '1.5px solid var(--border-color)',
-              padding: '12px 20px',
-              borderRadius: '6px'
-            }}>
-              <div style={{ fontWeight: 700, color: 'var(--accent-brass)', marginBottom: '4px' }}>[SYSTEM_STATUS_READOUT]</div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-                <div>GATEWAY: <span style={{ color: 'var(--success)' }}>ONLINE:8000</span></div>
-                <div>AUTH: <span style={{ color: 'var(--success)' }}>ONLINE:3001</span></div>
-                <div>BOOKING: <span style={{ color: 'var(--success)' }}>ONLINE:3003</span></div>
-                <div>FLIGHT: <span style={{ color: 'var(--success)' }}>ONLINE:3004</span></div>
-                <div>REMINDER: <span style={{ color: 'var(--success)' }}>ONLINE:3005</span></div>
-              </div>
-            </div>
           </div>
         )}
 

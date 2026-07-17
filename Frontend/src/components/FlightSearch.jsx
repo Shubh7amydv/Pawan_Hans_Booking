@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { Search, MapPin, Calendar, Users, DollarSign, ArrowRight, ShieldCheck, Plane } from 'lucide-react';
 
@@ -8,15 +8,27 @@ const FlightSearch = ({ onSelectFlight, user, onOpenAuth }) => {
   const [loading, setLoading] = useState(false);
   const [flights, setFlights] = useState([]);
   const [error, setError] = useState(null);
-
-  // Seeded airports list for quick dropdown selection
-  const airports = [
+  const [airports, setAirports] = useState([
     { id: 29, code: 'BLR', name: 'Kempegowda Int. Airport (Bengaluru)' },
     { id: 30, code: 'IXE', name: 'Mangaluru Airport (Mangaluru)' },
     { id: 31, code: 'IXG', name: 'Belagavi Airport (Belagavi)' },
     { id: 32, code: 'DEL', name: 'Indira Gandhi Int. Airport (Delhi)' },
     { id: 35, code: 'VNS', name: 'Babatpur Airport (Varanasi)' }
-  ];
+  ]);
+
+  useEffect(() => {
+    const fetchAirports = async () => {
+      try {
+        const response = await api.get('/api/v1/airport');
+        if (response.data && response.data.success && response.data.data.length > 0) {
+          setAirports(response.data.data);
+        }
+      } catch (err) {
+        console.error('Failed to load airports dynamically:', err);
+      }
+    };
+    fetchAirports();
+  }, []);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -185,7 +197,7 @@ const FlightSearch = ({ onSelectFlight, user, onOpenAuth }) => {
                       TICKET FARE
                     </div>
                     <div className="mono" style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent-rust)', display: 'flex', alignItems: 'center', gap: '1px', marginBottom: '16px' }}>
-                      <span style={{ fontSize: '1.2rem', fontWeight: 500, marginRight: '2px' }}>$</span>{flight.price}
+                      <span style={{ fontSize: '1.2rem', fontWeight: 500, marginRight: '2px' }}>₹</span>{flight.price}
                     </div>
 
                     {user ? (
