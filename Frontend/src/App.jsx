@@ -4,14 +4,35 @@ import AuthCard from './components/AuthCard';
 import FlightSearch from './components/FlightSearch';
 import BookingCard from './components/BookingCard';
 import PaymentSandbox from './components/PaymentSandbox';
+import AdminCMS from './components/AdminCMS';
+import api from './api';
 import { Plane, Star, ShieldCheck, Mail, Server } from 'lucide-react';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [activeTab, setActiveTab] = useState('search');
   const [selectedFlight, setSelectedFlight] = useState(null);
   const [activeBooking, setActiveBooking] = useState(null);
+
+  const checkAdminStatus = async (token) => {
+    try {
+      const authRes = await api.get('/api/v1/isAuthenticated', {
+        headers: { 'x-access-token': token }
+      });
+      if (authRes.data && authRes.data.success) {
+        const userId = authRes.data.data;
+        const adminRes = await api.post('/api/v1/isAdmin', { id: userId });
+        if (adminRes.data && adminRes.data.success) {
+          setIsAdmin(adminRes.data.data);
+        }
+      }
+    } catch (err) {
+      console.error('Error verifying admin status:', err);
+      setIsAdmin(false);
+    }
+  };
 
   // Restore user session from localStorage on startup
   useEffect(() => {
@@ -19,6 +40,7 @@ function App() {
     const email = localStorage.getItem('userEmail');
     if (token && email) {
       setUser({ token, email });
+      checkAdminStatus(token);
     }
   }, []);
 
@@ -26,6 +48,7 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
     setUser(null);
+    setIsAdmin(false);
     setActiveBooking(null);
     setSelectedFlight(null);
     setActiveTab('search');
@@ -35,6 +58,7 @@ function App() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar 
         user={user} 
+        isAdmin={isAdmin}
         onOpenAuth={() => setShowAuthModal(true)} 
         onLogout={handleLogout} 
         activeTab={activeTab} 
@@ -147,6 +171,10 @@ function App() {
           )
         )}
 
+        {activeTab === 'admin' && (
+          <AdminCMS user={user} />
+        )}
+
       </main>
 
       {/* Booking confirmation modal popup */}
@@ -167,7 +195,10 @@ function App() {
       {showAuthModal && (
         <AuthCard 
           onClose={() => setShowAuthModal(false)} 
-          onLoginSuccess={(userData) => setUser(userData)}
+          onLoginSuccess={(userData) => {
+            setUser(userData);
+            checkAdminStatus(userData.token);
+          }}
         />
       )}
 

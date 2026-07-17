@@ -1,7 +1,7 @@
 import React from 'react';
 import { Plane, LogIn, LogOut, User } from 'lucide-react';
 
-const Navbar = ({ user, onOpenAuth, onLogout, activeTab, setActiveTab }) => {
+const Navbar = ({ user, isAdmin, onOpenAuth, onLogout, activeTab, setActiveTab }) => {
   return (
     <nav className="glass" style={{
       display: 'flex',
@@ -66,7 +66,22 @@ const Navbar = ({ user, onOpenAuth, onLogout, activeTab, setActiveTab }) => {
             Payments Sandbox
           </button>
         )}
+        {isAdmin && (
+          <button
+            onClick={() => setActiveTab('admin')}
+            className="btn"
+            style={{
+              background: 'none',
+              color: activeTab === 'admin' ? 'var(--accent-indigo)' : 'var(--text-secondary)',
+              fontWeight: activeTab === 'admin' ? '700' : '500',
+              transition: 'color 0.2s'
+            }}
+          >
+            Admin Portal
+          </button>
+        )}
       </div>
+
 
       <div>
         {user ? (
