@@ -80,10 +80,53 @@ const update=async(req,res)=>{
     }
 };
 
+const getAll = async (req, res) => {
+    try {
+        const flights = await FlightService.getAllFlightData(req.query);
+        return res.status(200).json({
+            data: flights,
+            success: true,
+            message: "successfully fetched the flights",
+            err: {}
+        });
+    } catch (error) {
+        console.log("Error in flight controller:", error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: "Cannot search flights",
+            err: error
+        });
+    }
+}
+
+const updateSeats = async (req, res) => {
+    try {
+        const decrement = req.body.dec === undefined ? true : !!req.body.dec;
+        const response = await FlightService.updateSeats(req.params.id, req.body.seats, decrement);
+        return res.status(200).json({
+            data: response,
+            success: true,
+            message: "successfully updated seats of the flight",
+            err: {}
+        });
+    } catch (error) {
+        console.log("Error in updateSeats controller:", error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: "Cannot update seats of the flight",
+            err: error
+        });
+    }
+}
+
 module.exports={
     create,
     get,
-    update
+    update,
+    getAll,
+    updateSeats
 }
 
 

@@ -1,0 +1,29 @@
+const amqplib = require('amqplib');
+const { MESSAGE_BROKER_URL, EXCHANGE_NAME } = require('../config/serverconfig');
+
+const createChannel = async () => {
+    try {
+        const connection = await amqplib.connect(MESSAGE_BROKER_URL);
+        const channel = await connection.createChannel();
+        await channel.assertExchange(EXCHANGE_NAME, 'direct', false);
+        return channel;
+    } catch (error) {
+        console.log("Error creating RabbitMQ channel:", error);
+        throw error;
+    }
+}
+
+const publishMessage = async (channel, bindingKey, message) => {
+    try {
+        await channel.publish(EXCHANGE_NAME, bindingKey, Buffer.from(message));
+        console.log("Message published to queue with key:", bindingKey);
+    } catch (error) {
+        console.log("Error publishing message to queue:", error);
+        throw error;
+    }
+}
+
+module.exports = {
+    createChannel,
+    publishMessage
+}

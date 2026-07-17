@@ -19,8 +19,10 @@ router.get('/city', cityControllers.getAll);
 // router.get('/airport/:id', airportController.get);
 
 router.post('/flight', flightController.create);
+router.get('/flight', flightController.getAll);
 router.get('/flight/:id', flightController.get);
 router.patch('/flight/:id',flightController.update);
+router.patch('/flight/:id/seats', flightController.updateSeats);
 
 router.post('/airport', demoController.create);
 

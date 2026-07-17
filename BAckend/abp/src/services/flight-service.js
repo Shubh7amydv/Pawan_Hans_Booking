@@ -52,6 +52,28 @@ class flightservice {
         }
         
     };
+
+    async getAllFlightData(data){
+        try {
+            const flights = await this.FlightRepository.getAllFlights(data);
+            return flights;
+        } 
+        catch (error) {
+            console.log("something went wrong in service layer");
+            throw error;
+        }
+    }
+
+    async updateSeats(flightId, seats, decrement = true){
+        try {
+            const response = await this.FlightRepository.updateSeats(flightId, seats, decrement);
+            return response;
+        } 
+        catch (error) {
+            console.log("something went wrong in service layer");
+            throw error;
+        }
+    }
 }
 
 module.exports=flightservice ;

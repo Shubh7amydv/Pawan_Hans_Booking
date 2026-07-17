@@ -1,20 +1,12 @@
-const sender = require('./emailConfig');
-
-const sendBasicEmail = async (mailFrom, mailTo, mailSubject, mailBody) => {
-    try {
-        const response = await sender.sendMail({
-            from: mailFrom,
-            to: mailTo,
-            subject: mailSubject,
-            text: mailBody
-        });
-        console.log(response);
-    } catch (error) {
-        console.error(error);
-    }
-};
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = {
-    sendBasicEmail
+    PORT: process.env.PORT || 3005,
+    EMAIL_ID: process.env.EMAIL_ID,
+    PASSWORD: process.env.PASSWORD,
+    MESSAGE_BROKER_URL: process.env.MESSAGE_BROKER_URL,
+    EXCHANGE_NAME: process.env.EXCHANGE_NAME,
+    REMINDER_BINDING_KEY: process.env.REMINDER_BINDING_KEY,
+    QUEUE_NAME: process.env.QUEUE_NAME
 };

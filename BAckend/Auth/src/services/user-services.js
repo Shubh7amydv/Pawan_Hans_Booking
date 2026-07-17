@@ -95,6 +95,15 @@ class UserService{
         
         }
     }
+
+    async isAdmin(userId){
+        try {
+            return await this.userRepository.isAdmin(userId);
+        } catch (error) {
+            console.log("Error checking admin status in UserService");
+            throw error;
+        }
+    }
         
 }
 
