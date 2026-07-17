@@ -4,7 +4,7 @@
   "description": "this is folder for creating airline backend projecty",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon src/index",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

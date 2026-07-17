@@ -11,6 +11,7 @@ const {
     fetchPendingNotifications, 
     updateTicket 
 } = require('./Services/email-services');
+const db = require('./models');
 
 const setupAndStartServer = () => {
     const app = express();  
@@ -19,6 +20,9 @@ const setupAndStartServer = () => {
     
     app.listen(PORT, async () => {
         console.log(`Reminder Service is running on port ${PORT}`);
+        
+        await db.sequelize.sync();
+        console.log("Database synced successfully in Reminder Service");
 
         // Setup RabbitMQ channel and subscribe to emails
         try {
