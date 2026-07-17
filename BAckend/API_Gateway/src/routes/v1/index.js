@@ -23,6 +23,14 @@ router.use('/signin', proxy(AUTH_SERVICE_PATH, {
     ...PROXY_OPTS,
     proxyReqPathResolver: (req) => '/api/v1/signin'
 }));
+router.use('/isAuthenticated', proxy(AUTH_SERVICE_PATH, {
+    ...PROXY_OPTS,
+    proxyReqPathResolver: (req) => '/api/v1/isAuthenticated'
+}));
+router.use('/isAdmin', proxy(AUTH_SERVICE_PATH, {
+    ...PROXY_OPTS,
+    proxyReqPathResolver: (req) => '/api/v1/isAdmin'
+}));
 
 // Flight / ABP Service routes (unprotected search / read)
 router.use('/flight', proxy(FLIGHT_SERVICE_PATH, {
@@ -41,6 +49,15 @@ router.use('/city', proxy(FLIGHT_SERVICE_PATH, {
         return '/api/v1/city' + parts[0] + query;
     }
 }));
+router.use('/airport', proxy(FLIGHT_SERVICE_PATH, {
+    ...PROXY_OPTS,
+    proxyReqPathResolver: (req) => {
+        const parts = req.url.split('?');
+        const query = parts[1] ? '?' + parts[1] : '';
+        return '/api/v1/airport' + parts[0] + query;
+    }
+}));
+
 
 // Booking Service routes (protected by checkAuth)
 router.use('/bookings', checkAuth, proxy(BOOKING_SERVICE_PATH, {

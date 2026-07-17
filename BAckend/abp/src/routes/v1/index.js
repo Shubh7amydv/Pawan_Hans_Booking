@@ -25,6 +25,8 @@ router.patch('/flight/:id',flightController.update);
 router.patch('/flight/:id/seats', flightController.updateSeats);
 
 router.post('/airport', demoController.create);
+router.get('/airport', demoController.getAll);
+
 
 
 
