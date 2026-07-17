@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import api from '../api';
-import { Search, MapPin, Calendar, Users, DollarSign, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Search, MapPin, Calendar, Users, DollarSign, ArrowRight, ShieldCheck, Plane } from 'lucide-react';
 
 const FlightSearch = ({ onSelectFlight, user, onOpenAuth }) => {
   const [departureId, setDepartureId] = useState('');
