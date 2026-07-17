@@ -9,16 +9,24 @@ const {
 
 const router = express.Router();
 
+const PROXY_OPTS = {
+    proxyReqTimeout: 60000,   // 60s — allows cold-starting free-tier services to wake up
+    userResDecorator: (proxyRes, proxyResData) => proxyResData,
+};
+
 // Auth Service routes (unprotected)
 router.use('/signup', proxy(AUTH_SERVICE_PATH, {
+    ...PROXY_OPTS,
     proxyReqPathResolver: (req) => '/api/v1/signup'
 }));
 router.use('/signin', proxy(AUTH_SERVICE_PATH, {
+    ...PROXY_OPTS,
     proxyReqPathResolver: (req) => '/api/v1/signin'
 }));
 
 // Flight / ABP Service routes (unprotected search / read)
 router.use('/flight', proxy(FLIGHT_SERVICE_PATH, {
+    ...PROXY_OPTS,
     proxyReqPathResolver: (req) => {
         const parts = req.url.split('?');
         const query = parts[1] ? '?' + parts[1] : '';
@@ -26,6 +34,7 @@ router.use('/flight', proxy(FLIGHT_SERVICE_PATH, {
     }
 }));
 router.use('/city', proxy(FLIGHT_SERVICE_PATH, {
+    ...PROXY_OPTS,
     proxyReqPathResolver: (req) => {
         const parts = req.url.split('?');
         const query = parts[1] ? '?' + parts[1] : '';
@@ -35,10 +44,13 @@ router.use('/city', proxy(FLIGHT_SERVICE_PATH, {
 
 // Booking Service routes (protected by checkAuth)
 router.use('/bookings', checkAuth, proxy(BOOKING_SERVICE_PATH, {
+    ...PROXY_OPTS,
     proxyReqPathResolver: (req) => '/api/v1/bookings'
 }));
 router.use('/payments', checkAuth, proxy(BOOKING_SERVICE_PATH, {
+    ...PROXY_OPTS,
     proxyReqPathResolver: (req) => '/api/v1/payments'
 }));
 
 module.exports = router;
+
