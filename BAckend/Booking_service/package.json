@@ -1,0 +1,32 @@
+{
+  "name": "booking_service",
+  "version": "1.0.0",
+  "description": "This is microservice named booking",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon src/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shubh7amydv/Booking_service.git"
+  },
+  "author": "SitaRam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shubh7amydv/Booking_service/issues"
+  },
+  "homepage": "https://github.com/Shubh7amydv/Booking_service#readme",
+  "dependencies": {
+    "axios": "^1.13.5",
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "http-status-code": "^2.1.0",
+    "http-status-codes": "^2.3.0",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.16.3",
+    "nodemon": "^3.1.11",
+    "sequelize": "^6.37.7",
+    "sequelize-cli": "^6.6.5"
+  }
+}

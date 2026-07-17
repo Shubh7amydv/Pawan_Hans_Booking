@@ -1,0 +1,6 @@
+node_modules/
+.env
+src/notes.txt
+src/flow.txt
+src/errorlogs.txt
+src/config/config.json
