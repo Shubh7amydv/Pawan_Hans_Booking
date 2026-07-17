@@ -70,74 +70,48 @@ function App() {
         
         {/* Header Hero Section (Only visible on search tab) */}
         {activeTab === 'search' && !selectedFlight && (
-          <div style={{ textAlign: 'center', padding: '60px 20px 40px', maxWidth: '800px', margin: '0 auto' }}>
-            <div style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '8px', 
-              background: 'rgba(99, 102, 241, 0.1)', 
-              color: '#818cf8',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '20px'
-            }}>
-              <Star size={14} fill="#818cf8" />
-              End-To-End Microservices Client
-            </div>
-            
+          <div style={{ textAlign: 'left', padding: '60px 0 40px', maxWidth: '1200px', width: '90%', margin: '0 auto' }}>
             <h1 style={{ 
               fontSize: '3.5rem', 
               fontWeight: 800, 
               lineHeight: 1.15,
               marginBottom: '16px',
-              letterSpacing: '-0.03em'
+              letterSpacing: '-0.025em',
+              fontFamily: "'Fraunces', serif",
+              color: 'var(--text-primary)'
             }}>
-              Search and Book Your{' '}
-              <span style={{ 
-                background: 'linear-gradient(to right, var(--accent-indigo), var(--accent-purple))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                Pushpak Viman
-              </span>
+              Search and Book Your Pushpak Viman
             </h1>
             
             <p style={{ 
               color: 'var(--text-secondary)', 
               fontSize: '1.15rem', 
               lineHeight: 1.6,
-              marginBottom: '32px'
+              marginBottom: '24px',
+              maxWidth: '750px'
             }}>
               Test Auth RBAC, safe transactional booking seat updates, and RabbitMQ message enqueuing through a single, cohesive frontend dashboard.
             </p>
 
             {/* Diagnostics indicators */}
-            <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '16px',
-              fontSize: '0.85rem',
-              color: 'var(--text-muted)'
+            <div className="mono" style={{
+              display: 'inline-flex',
+              flexDirection: 'column',
+              gap: '6px',
+              fontSize: '0.8rem',
+              color: 'var(--text-muted)',
+              background: 'var(--bg-secondary)',
+              border: '1.5px solid var(--border-color)',
+              padding: '12px 20px',
+              borderRadius: '6px'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Server size={14} color="var(--success)" /> Gateway: Port 8000
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Server size={14} color="var(--success)" /> Auth: Port 3001
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Server size={14} color="var(--success)" /> Booking: Port 3003
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Server size={14} color="var(--success)" /> Flight: Port 3004
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Server size={14} color="var(--success)" /> Reminder: Port 3005
+              <div style={{ fontWeight: 700, color: 'var(--accent-brass)', marginBottom: '4px' }}>[SYSTEM_STATUS_READOUT]</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+                <div>GATEWAY: <span style={{ color: 'var(--success)' }}>ONLINE:8000</span></div>
+                <div>AUTH: <span style={{ color: 'var(--success)' }}>ONLINE:3001</span></div>
+                <div>BOOKING: <span style={{ color: 'var(--success)' }}>ONLINE:3003</span></div>
+                <div>FLIGHT: <span style={{ color: 'var(--success)' }}>ONLINE:3004</span></div>
+                <div>REMINDER: <span style={{ color: 'var(--success)' }}>ONLINE:3005</span></div>
               </div>
             </div>
           </div>

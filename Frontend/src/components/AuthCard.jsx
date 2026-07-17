@@ -52,20 +52,20 @@ const AuthCard = ({ onClose, onLoginSuccess }) => {
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: 'rgba(0,0,0,0.7)',
-      backdropFilter: 'blur(8px)',
+      backgroundColor: 'rgba(5, 8, 14, 0.85)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       zIndex: 1000
     }}>
-      <div className="glass" style={{
+      <div className="panel" style={{
         padding: '40px',
         width: '400px',
         maxWidth: '90%',
         position: 'relative',
-        boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-        border: '1px solid rgba(255,255,255,0.15)'
+        boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
+        border: '1.5px solid var(--border-color)',
+        borderRadius: '6px'
       }}>
         <button 
           onClick={onClose}
@@ -82,7 +82,7 @@ const AuthCard = ({ onClose, onLoginSuccess }) => {
           <X size={20} />
         </button>
 
-        <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px' }}>
+        <h2 style={{ fontSize: '1.8rem', fontWeight: 800, fontFamily: "'Fraunces', serif", marginBottom: '8px', color: 'var(--text-primary)' }}>
           {isLogin ? 'Welcome Back' : 'Create Account'}
         </h2>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '24px' }}>
@@ -91,11 +91,11 @@ const AuthCard = ({ onClose, onLoginSuccess }) => {
 
         {error && (
           <div style={{
-            background: 'rgba(244, 63, 94, 0.1)',
+            background: 'rgba(193, 69, 58, 0.1)',
             border: '1px solid var(--error)',
             color: '#fca5a5',
             padding: '12px',
-            borderRadius: '8px',
+            borderRadius: '6px',
             fontSize: '0.85rem',
             marginBottom: '16px'
           }}>
@@ -105,11 +105,11 @@ const AuthCard = ({ onClose, onLoginSuccess }) => {
 
         {success && (
           <div style={{
-            background: 'rgba(16, 185, 129, 0.1)',
+            background: 'rgba(74, 157, 111, 0.1)',
             border: '1px solid var(--success)',
             color: '#34d399',
             padding: '12px',
-            borderRadius: '8px',
+            borderRadius: '6px',
             fontSize: '0.85rem',
             marginBottom: '16px'
           }}>
@@ -141,7 +141,7 @@ const AuthCard = ({ onClose, onLoginSuccess }) => {
               <input
                 type="password"
                 required
-                className="input-field"
+                className="input-field mono"
                 placeholder="••••••••"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
@@ -165,7 +165,7 @@ const AuthCard = ({ onClose, onLoginSuccess }) => {
             style={{
               background: 'none',
               border: 'none',
-              color: 'var(--accent-indigo)',
+              color: 'var(--accent-brass)',
               fontSize: '0.9rem',
               fontWeight: 600,
               cursor: 'pointer'

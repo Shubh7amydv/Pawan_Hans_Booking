@@ -242,19 +242,19 @@ const AdminCMS = ({ user }) => {
 
       {loading ? (
         <div style={{ textAlign: 'center', padding: '60px 0' }}>
-          <RefreshCw className="animate-spin" size={32} style={{ color: 'var(--accent-indigo)' }} />
-          <p style={{ marginTop: '12px', color: 'var(--text-secondary)' }}>Loading CMS Entities...</p>
+          <RefreshCw className="animate-spin" size={32} style={{ color: 'var(--accent-brass)' }} />
+          <p className="mono" style={{ marginTop: '12px', color: 'var(--text-secondary)' }}>Loading CMS Entities...</p>
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '32px' }}>
           
           {/* LEFT SIDE: Creation Form */}
-          <div className="glass" style={{ padding: '28px', height: 'fit-content' }}>
+          <div className="panel" style={{ padding: '28px', height: 'fit-content' }}>
             
             {activeSubTab === 'cities' && (
               <form onSubmit={handleAddCity}>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Building size={18} color="var(--accent-indigo)" /> Add New City
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: "'Fraunces', serif", marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Building size={18} color="var(--accent-brass)" /> Add New City
                 </h3>
                 <div className="input-group" style={{ marginBottom: '20px' }}>
                   <label>City Name</label>
@@ -275,8 +275,8 @@ const AdminCMS = ({ user }) => {
 
             {activeSubTab === 'airports' && (
               <form onSubmit={handleAddAirport}>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <MapPin size={18} color="var(--accent-indigo)" /> Add New Airport
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: "'Fraunces', serif", marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <MapPin size={18} color="var(--accent-brass)" /> Add New Airport
                 </h3>
                 <div className="input-group" style={{ marginBottom: '16px' }}>
                   <label>Airport Name</label>
@@ -321,8 +321,8 @@ const AdminCMS = ({ user }) => {
 
             {activeSubTab === 'flights' && (
               <form onSubmit={handleAddFlight}>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Plane size={18} color="var(--accent-indigo)" /> Schedule Flight
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: "'Fraunces', serif", marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Plane size={18} color="var(--accent-brass)" /> Schedule Flight
                 </h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                   <div className="input-group">
@@ -435,17 +435,17 @@ const AdminCMS = ({ user }) => {
           </div>
 
           {/* RIGHT SIDE: Table List */}
-          <div className="glass" style={{ padding: '28px', maxHeight: '600px', overflowY: 'auto' }}>
+          <div className="panel" style={{ padding: '28px', maxHeight: '600px', overflowY: 'auto' }}>
             
             {activeSubTab === 'cities' && (
               <div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '20px' }}>Registered Cities</h3>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: "'Fraunces', serif", marginBottom: '20px' }}>Registered Cities</h3>
                 {cities.length === 0 ? (
                   <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '40px 0' }}>No cities created yet.</p>
                 ) : (
                   <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                     <thead>
-                      <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                      <tr className="mono" style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
                         <th style={{ padding: '12px 8px' }}>ID</th>
                         <th style={{ padding: '12px 8px' }}>City Name</th>
                         <th style={{ padding: '12px 8px', textAlign: 'right' }}>Actions</th>
@@ -454,13 +454,13 @@ const AdminCMS = ({ user }) => {
                     <tbody>
                       {cities.map(city => (
                         <tr key={city.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                          <td style={{ padding: '12px 8px', fontWeight: 700 }}>{city.id}</td>
+                          <td className="mono" style={{ padding: '12px 8px', fontWeight: 700 }}>{city.id}</td>
                           <td style={{ padding: '12px 8px' }}>{city.name}</td>
                           <td style={{ padding: '12px 8px', textAlign: 'right' }}>
                             <button 
                               onClick={() => handleDeleteCity(city.id)} 
                               className="btn btn-danger" 
-                              style={{ padding: '6px', borderRadius: '8px' }}
+                              style={{ padding: '6px', borderRadius: '4px' }}
                               disabled={actionLoading}
                             >
                               <Trash size={14} />
@@ -476,13 +476,13 @@ const AdminCMS = ({ user }) => {
 
             {activeSubTab === 'airports' && (
               <div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '20px' }}>Registered Airports</h3>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: "'Fraunces', serif", marginBottom: '20px' }}>Registered Airports</h3>
                 {airports.length === 0 ? (
                   <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '40px 0' }}>No airports created yet.</p>
                 ) : (
                   <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                     <thead>
-                      <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                      <tr className="mono" style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
                         <th style={{ padding: '12px 8px' }}>ID</th>
                         <th style={{ padding: '12px 8px' }}>Airport Name</th>
                         <th style={{ padding: '12px 8px' }}>City Link</th>
@@ -491,9 +491,9 @@ const AdminCMS = ({ user }) => {
                     <tbody>
                       {airports.map(airport => (
                         <tr key={airport.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                          <td style={{ padding: '12px 8px', fontWeight: 700 }}>{airport.id}</td>
+                          <td className="mono" style={{ padding: '12px 8px', fontWeight: 700 }}>{airport.id}</td>
                           <td style={{ padding: '12px 8px' }}>
-                            <div>{airport.name}</div>
+                            <div style={{ fontWeight: 600 }}>{airport.name}</div>
                             <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{airport.address || 'No Location Details'}</div>
                           </td>
                           <td style={{ padding: '12px 8px' }}>
@@ -509,7 +509,7 @@ const AdminCMS = ({ user }) => {
 
             {activeSubTab === 'flights' && (
               <div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '20px' }}>Scheduled Flights</h3>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: "'Fraunces', serif", marginBottom: '20px' }}>Scheduled Flights</h3>
                 {flights.length === 0 ? (
                   <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '40px 0' }}>No flights scheduled yet.</p>
                 ) : (
@@ -518,29 +518,30 @@ const AdminCMS = ({ user }) => {
                       <div key={flight.id} style={{
                         padding: '16px',
                         border: '1px solid var(--border-color)',
-                        borderRadius: '12px',
+                        borderRadius: '6px',
                         display: 'flex',
                         justifyContent: 'space-between',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        background: 'rgba(255,255,255,0.01)'
                       }}>
                         <div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <span className="badge badge-info">{flight.flightNumber}</span>
-                            <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Plane ID: {flight.airplaneId}</span>
+                            <span className="mono" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>PLANE: {flight.airplaneId}</span>
                           </div>
-                          <div style={{ fontSize: '1rem', fontWeight: 700, marginTop: '6px' }}>
+                          <div style={{ fontSize: '0.95rem', fontWeight: 700, marginTop: '6px' }}>
                             {getAirportName(flight.departureAirportId)} ➔ {getAirportName(flight.arrivalAirportId)}
                           </div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                            Dep: {new Date(flight.departureTime).toLocaleString()}
+                          <div className="mono" style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                            DEP: {new Date(flight.departureTime).toLocaleString()}
                           </div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
-                          <div style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--accent-pink)' }}>
+                          <div className="mono" style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-rust)' }}>
                             ${flight.price}
                           </div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                            Seats: {flight.totalSeats}
+                          <div className="mono" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                            SEATS: {flight.totalSeats}
                           </div>
                         </div>
                       </div>

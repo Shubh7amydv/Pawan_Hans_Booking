@@ -49,12 +49,12 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
 
   return (
     <div style={{ maxWidth: '600px', width: '90%', margin: '0 auto 40px' }}>
-      <div className="glass" style={{ padding: '40px', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)' }}>
+      <div className="panel" style={{ padding: '40px', boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.6)' }}>
         
         {!paymentResult ? (
           <>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <CreditCard size={24} style={{ color: 'var(--accent-indigo)' }} />
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, fontFamily: "'Fraunces', serif", marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CreditCard size={24} style={{ color: 'var(--accent-brass)' }} />
               Payment Sandbox
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '24px' }}>
@@ -63,10 +63,10 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
 
             {/* Billing details info box */}
             <div style={{
-              background: 'rgba(255,255,255,0.02)',
+              background: 'var(--bg-secondary)',
               border: '1px solid var(--border-color)',
               padding: '16px 20px',
-              borderRadius: '12px',
+              borderRadius: '6px',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -74,11 +74,11 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
             }}>
               <div>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>PAYING FOR BOOKING ID</div>
-                <div style={{ fontWeight: 700, fontSize: '1.1rem' }}>#{booking.id}</div>
+                <div className="mono" style={{ fontWeight: 700, fontSize: '1.1rem' }}>#{booking.id}</div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>AMOUNT DUE</div>
-                <div style={{ fontWeight: 800, fontSize: '1.4rem', color: 'var(--accent-pink)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                <div className="mono" style={{ fontWeight: 800, fontSize: '1.4rem', color: 'var(--accent-rust)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                   <DollarSign size={18} /> {booking.totalCost}
                 </div>
               </div>
@@ -86,11 +86,11 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
 
             {error && (
               <div style={{
-                background: 'rgba(244, 63, 94, 0.1)',
+                background: 'rgba(193, 69, 58, 0.1)',
                 border: '1px solid var(--error)',
                 color: '#fca5a5',
                 padding: '12px',
-                borderRadius: '8px',
+                borderRadius: '6px',
                 fontSize: '0.85rem',
                 marginBottom: '16px'
               }}>
@@ -123,7 +123,7 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
                   type="text"
                   required
                   maxLength="19"
-                  className="input-field"
+                  className="input-field mono"
                   placeholder="4111 2222 3333 4444"
                   value={cardNumber}
                   onChange={e => setCardNumber(e.target.value)}
@@ -138,7 +138,7 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
                     required
                     maxLength="5"
                     placeholder="MM/YY"
-                    className="input-field"
+                    className="input-field mono"
                     value={cardExpiry}
                     onChange={e => setCardExpiry(e.target.value)}
                   />
@@ -150,7 +150,7 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
                     required
                     maxLength="3"
                     placeholder="•••"
-                    className="input-field"
+                    className="input-field mono"
                     value={cardCvv}
                     onChange={e => setCardCvv(e.target.value)}
                   />
@@ -165,16 +165,16 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
         ) : (
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
             <CheckCircle2 size={64} style={{ color: 'var(--success)', marginBottom: '16px' }} />
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px' }}>Payment Complete!</h2>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, fontFamily: "'Fraunces', serif", marginBottom: '8px' }}>Payment Complete!</h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '24px' }}>
               Booking is now marked as **Booked**.
             </p>
 
             <div style={{
-              background: 'rgba(255,255,255,0.03)',
+              background: 'var(--bg-secondary)',
               border: '1px solid var(--border-color)',
               padding: '20px',
-              borderRadius: '12px',
+              borderRadius: '6px',
               textAlign: 'left',
               marginBottom: '32px'
             }}>
@@ -183,7 +183,7 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
               </p>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>
                 A confirmation ticket was published to the queue with key `REMINDER_SERVICE`.
-                The Reminder Service (Port 3005) will process the ticket and deliver the confirmation mail to **{recipientEmail}** within 1 minute.
+                The Reminder Service (Port 3005) will process the ticket and deliver the confirmation mail to <strong className="mono">{recipientEmail}</strong> within 1 minute.
               </p>
             </div>
 

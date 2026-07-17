@@ -1,31 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0b0f19;
+  color: #eef1f5;
+  background-color: #0d1420;
 
   /* Color system */
-  --bg-primary: #0b0f19;
-  --bg-secondary: #131a2c;
-  --bg-card: rgba(30, 41, 59, 0.45);
-  --border-color: rgba(255, 255, 255, 0.08);
+  --bg-primary: #0d1420;
+  --bg-secondary: #111c2b;
+  --bg-card: #182233;
+  --border-color: #2a3646;
   
-  --accent-indigo: #6366f1;
-  --accent-purple: #a855f7;
-  --accent-pink: #ec4899;
+  --accent-brass: #c9a24c;
+  --accent-rust: #c1502e;
+  --accent-teal: #3f7d76;
   
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #eef1f5;
+  --text-secondary: #98a5b5;
+  --text-muted: #5f6c7c;
   
-  --success: #10b981;
-  --error: #f43f5e;
-  --warning: #f59e0b;
+  --success: #4a9d6f;
+  --error: #c1453a;
+  --warning: #c9a24c;
 }
 
 * {
@@ -38,30 +38,27 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 75%);
+  background: radial-gradient(circle at 50% -10%, #1a2942 0%, #0d1420 60%);
   background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
 }
 
-/* Glassmorphism */
-.glass {
+/* Panel Containers */
+.panel {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.2s ease;
 }
 
-.glass-interactive {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.panel-interactive {
+  cursor: pointer;
 }
 
-.glass-interactive:hover {
-  background: rgba(30, 41, 59, 0.6);
-  border-color: rgba(99, 102, 241, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.2);
-  transform: translateY(-2px);
+.panel-interactive:hover {
+  border-color: rgba(201, 162, 76, 0.4);
 }
 
 /* Buttons */
@@ -71,7 +68,7 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 10px 20px;
-  border-radius: 12px;
+  border-radius: 6px;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
@@ -86,26 +83,23 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-purple) 100%);
-  color: white;
-  box-shadow: 0 4px 20px -5px rgba(99, 102, 241, 0.4);
+  background: var(--accent-brass);
+  color: #0d1420;
 }
 
 .btn-primary:hover:not(:disabled) {
   filter: brightness(1.1);
-  box-shadow: 0 6px 24px -3px rgba(99, 102, 241, 0.5);
-  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .btn-danger {
@@ -126,7 +120,7 @@ body {
 }
 
 .input-group label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
@@ -136,8 +130,8 @@ body {
 .input-field {
   width: 100%;
   padding: 12px 16px;
-  border-radius: 12px;
-  background: rgba(15, 23, 42, 0.6);
+  border-radius: 6px;
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   color: white;
   font-size: 0.95rem;
@@ -147,8 +141,8 @@ body {
 
 .input-field:focus {
   outline: none;
-  border-color: var(--accent-indigo);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 0 2px rgba(63, 125, 118, 0.2);
 }
 
 /* Badge tags */
@@ -156,29 +150,87 @@ body {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
-  border-radius: 9999px;
+  border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
 .badge-info {
-  background: rgba(99, 102, 241, 0.15);
-  color: #818cf8;
+  background: rgba(201, 162, 76, 0.1);
+  color: var(--accent-brass);
+  border: 1px solid rgba(201, 162, 76, 0.2);
 }
 
 .badge-success {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  background: rgba(74, 157, 111, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(74, 157, 111, 0.2);
 }
 
 .badge-warning {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+  background: rgba(201, 162, 76, 0.1);
+  color: var(--accent-brass);
+  border: 1px solid rgba(201, 162, 76, 0.2);
 }
 
 .badge-error {
-  background: rgba(244, 63, 94, 0.15);
-  color: #fca5a5;
+  background: rgba(193, 69, 58, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(193, 69, 58, 0.2);
+}
+
+/* Tabular Mono Data styling */
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Boarding Pass Ticket Stub Component */
+.ticket {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px -12px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+}
+
+.ticket-left {
+  flex: 3;
+  padding: 24px 32px;
+  border-right: 2px dashed var(--border-color);
+  position: relative;
+}
+
+.ticket-right {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.01);
+}
+
+/* Semi-circular ticket cutouts */
+.ticket-cutout-top, .ticket-cutout-bottom {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #0d1420; /* Matches main bg */
+  border-radius: 50%;
+  right: -11px;
+  z-index: 10;
+  border: 1px solid var(--border-color);
+}
+
+.ticket-cutout-top {
+  top: -11px;
+}
+
+.ticket-cutout-bottom {
+  bottom: -11px;
 }
 
 /* Custom Scrollbar */
@@ -191,10 +243,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
 }
+
