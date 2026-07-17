@@ -4,7 +4,8 @@
   "description": "This is microservice named booking",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon src/index"
+    "start": "node src/index",
+    "dev": "npx nodemon src/index"
   },
   "repository": {
     "type": "git",

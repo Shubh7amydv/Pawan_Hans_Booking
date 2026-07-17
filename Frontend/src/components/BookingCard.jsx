@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { X, Calendar, DollarSign, Users, Ticket, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 const BookingCard = ({ flight, user, onBookingSuccess, onClose }) => {
@@ -14,8 +14,8 @@ const BookingCard = ({ flight, user, onBookingSuccess, onClose }) => {
     setError(null);
 
     try {
-      const response = await axios.post(
-        'http://localhost:8000/api/v1/bookings',
+      const response = await api.post(
+        '/api/v1/bookings',
         { flightId: flight.id, noOfSeats },
         {
           headers: {

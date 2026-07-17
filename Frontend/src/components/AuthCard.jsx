@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { X, Mail, Lock, ShieldCheck, RefreshCw } from 'lucide-react';
 
 const AuthCard = ({ onClose, onLoginSuccess }) => {
@@ -16,12 +16,10 @@ const AuthCard = ({ onClose, onLoginSuccess }) => {
     setError(null);
     setSuccess(null);
 
-    const url = isLogin 
-      ? 'http://localhost:8000/api/v1/signin' 
-      : 'http://localhost:8000/api/v1/signup';
+    const url = isLogin ? '/api/v1/signin' : '/api/v1/signup';
 
     try {
-      const response = await axios.post(url, { email, password });
+      const response = await api.post(url, { email, password });
       if (response.data && response.data.success) {
         if (isLogin) {
           const token = response.data.data;

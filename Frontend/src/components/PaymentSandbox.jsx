@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { CreditCard, DollarSign, Send, ShieldCheck, CheckCircle2, RefreshCw } from 'lucide-react';
 
 const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
@@ -19,8 +19,8 @@ const PaymentSandbox = ({ booking, user, onPaymentComplete }) => {
     setError(null);
 
     try {
-      const response = await axios.post(
-        'http://localhost:8000/api/v1/payments',
+      const response = await api.post(
+        '/api/v1/payments',
         {
           bookingId: booking.id,
           totalCost: booking.totalCost,

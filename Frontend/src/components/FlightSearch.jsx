@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { Search, MapPin, Calendar, Users, DollarSign, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const FlightSearch = ({ onSelectFlight, user, onOpenAuth }) => {
@@ -30,7 +30,7 @@ const FlightSearch = ({ onSelectFlight, user, onOpenAuth }) => {
     const queryString = queryParams.length ? `?${queryParams.join('&')}` : '';
     
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/flight${queryString}`);
+      const response = await api.get(`/api/v1/flight${queryString}`);
       if (response.data && response.data.success) {
         setFlights(response.data.data);
       } else {

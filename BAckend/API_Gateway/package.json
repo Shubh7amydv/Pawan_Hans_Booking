@@ -4,7 +4,8 @@
   "description": "API Gateway for Airline Booking system",
   "main": "src/index.js",
   "scripts": {
-    "start": "npx nodemon src/index.js"
+    "start": "node src/index.js",
+    "dev": "npx nodemon src/index.js"
   },
   "dependencies": {
     "axios": "^1.13.5",
